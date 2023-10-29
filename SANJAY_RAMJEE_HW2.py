@@ -1,20 +1,8 @@
-import zipfile
-# Specify the file to be zipped
-file_to_zip = 'SANJAY_RAMJEE_HW2.py'
-
-# Specify the name of the ZIP file to create
-zip_file_name = 'homework2.zip'
-
-# Create a ZipFile object in write mode
-with zipfile.ZipFile(zip_file_name, 'w') as zipf:
-    # Add the file to the ZIP archive
-    zipf.write(file_to_zip, arcname='example.txt')
 class Vehicle:
     def __init__(self, make, model, year):
         self.make = make
         self.model = model
         self.year = year
-        
 
     def get_info(self):
         string = f'Make: {self.make} model: {self.model} year: {self.year}'
@@ -28,7 +16,7 @@ class Vehicle:
 
 class Car(Vehicle):
     def __init__(self, make, model, year, num_doors):
-        super().__init__(make, model, year)
+        Vehicle.__init__(self, make, model, year)
         self.num_doors = num_doors
 
     def honk(self):
@@ -40,7 +28,7 @@ class Car(Vehicle):
 
 class Motorcycle(Vehicle):
     def __init__(self, make, model, year, type):
-        super().__init__(make, model, year)
+        Vehicle.__init__(self, make, model, year)
         self.type = type
 
     def honk(self):
@@ -52,7 +40,7 @@ class Motorcycle(Vehicle):
 
 class Truck(Vehicle):
     def __init__(self, make, model, year, capacity):
-        super().__init__(make, model, year)
+        Vehicle.__init__(self, make, model, year)
         self.capacity = capacity
 
     def honk(self):
@@ -68,7 +56,7 @@ class Truck(Vehicle):
 class PickupTruck(Car, Truck):
     def __init__(self, make, model, year, num_doors, capacity, has_cover):
         Car.__init__(self, make, model, year, num_doors)
-        Truck.__init__(self, make, model, year, capacity)
+        Truck.__init__(self, make, model, year, capacity)  
         self.has_cover = has_cover
 
     def get_info(self):
